@@ -1,0 +1,716 @@
+@import url('_editor_button_styles.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================
+   🎨 CATPPUCCIN FRAPPÉ THEME FOR ANKI
+   Combined Front + Back Card Styling
+   https://github.com/catppuccin/catppuccin
+   ============================================ */
+
+:root {
+  /* Catppuccin Frappé Base Colors */
+  --ctp-rosewater: #f2d5cf;
+  --ctp-flamingo: #eebebe;
+  --ctp-pink: #f4b8e4;
+  --ctp-mauve: #ca9ee6;
+  --ctp-red: #e78284;
+  --ctp-maroon: #ea999c;
+  --ctp-peach: #ef9f76;
+  --ctp-yellow: #e5c890;
+  --ctp-green: #a6d189;
+  --ctp-teal: #81c8be;
+  --ctp-sky: #99d1db;
+  --ctp-sapphire: #85c1dc;
+  --ctp-blue: #8caaee;
+  --ctp-lavender: #babbf1;
+
+  /* Catppuccin Frappé Surface Colors */
+  --ctp-text: #c6d0f5;
+  --ctp-subtext1: #b5bfe2;
+  --ctp-subtext0: #a5adce;
+  --ctp-overlay2: #949cbb;
+  --ctp-overlay1: #838ba7;
+  --ctp-overlay0: #737994;
+  --ctp-surface2: #626880;
+  --ctp-surface1: #51576d;
+  --ctp-surface0: #414559;
+  --ctp-base: #303446;
+  --ctp-mantle: #292c3c;
+  --ctp-crust: #232634;
+
+  /* Semantic mappings */
+  --bg-primary: var(--ctp-base);
+  --bg-secondary: var(--ctp-mantle);
+  --bg-tertiary: var(--ctp-surface0);
+  --bg-card: var(--ctp-mantle);
+
+  --text-primary: var(--ctp-text);
+  --text-secondary: var(--ctp-subtext1);
+  --text-muted: var(--ctp-overlay1);
+
+  --accent-primary: var(--ctp-blue);
+  --accent-secondary: var(--ctp-mauve);
+  --accent-green: var(--ctp-green);
+  --accent-orange: var(--ctp-peach);
+  --accent-red: var(--ctp-red);
+  --accent-cyan: var(--ctp-teal);
+  --accent-yellow: var(--ctp-yellow);
+  --accent-pink: var(--ctp-pink);
+
+  --border-color: var(--ctp-surface1);
+  --border-light: var(--ctp-surface0);
+
+  --shadow-sm: 0 1px 3px rgba(35, 38, 52, 0.4);
+  --shadow-md: 0 4px 14px rgba(35, 38, 52, 0.5);
+  --shadow-lg: 0 8px 28px rgba(35, 38, 52, 0.6);
+  --shadow-glow: 0 0 40px rgba(140, 170, 238, 0.1);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* ============================================
+   GENERAL CARD STYLING (Both Front & Back)
+   ============================================ */
+
+.card {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  background: linear-gradient(
+    160deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 100%
+  );
+  padding: 32px;
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: fadeIn 0.35s ease-out;
+}
+
+/* Night mode support */
+.night_mode .card,
+.nightMode .card {
+  background: linear-gradient(
+    160deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 100%
+  );
+}
+
+/* ============================================
+   🎴 FRONT CARD STYLING
+   ============================================ */
+
+.front,
+.card.front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 48px 32px;
+}
+
+/* Main Question/Word Display */
+.question,
+.front-main {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(198, 208, 245, 0.1);
+}
+
+/* German word - Gradient text effect */
+.german-word,
+.word,
+.vocab {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--ctp-peach) 0%,
+    var(--ctp-maroon) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 16px 0;
+  letter-spacing: -0.02em;
+  filter: drop-shadow(0 4px 20px rgba(239, 159, 118, 0.25));
+}
+
+/* Article/Gender badges */
+.article,
+.gender {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.article.der,
+.gender.masculine {
+  background: rgba(140, 170, 238, 0.15);
+  color: var(--ctp-blue);
+  border: 2px solid rgba(140, 170, 238, 0.4);
+}
+
+.article.die,
+.gender.feminine {
+  background: rgba(244, 184, 228, 0.15);
+  color: var(--ctp-pink);
+  border: 2px solid rgba(244, 184, 228, 0.4);
+}
+
+.article.das,
+.gender.neuter {
+  background: rgba(166, 209, 137, 0.15);
+  color: var(--ctp-green);
+  border: 2px solid rgba(166, 209, 137, 0.4);
+}
+
+/* Subtitle/Context on front */
+.subtitle,
+.context {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 12px 0;
+}
+
+/* Hint on front card */
+.hint-text,
+.clue {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 28px;
+  padding: 14px 24px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+/* Category tags */
+.tags,
+.category {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.tag,
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  background: var(--bg-tertiary);
+  color: var(--ctp-teal);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Optional card frame wrapper */
+.question-card,
+.front-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 48px 56px;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  max-width: 550px;
+  width: 100%;
+}
+
+/* ============================================
+   📖 BACK CARD STYLING
+   ============================================ */
+
+.back,
+.card.back {
+  text-align: left;
+}
+
+/* ============================================
+   📊 TABLE STYLING (Back Card)
+   ============================================ */
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 24px 0;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 16px 20px;
+  border: none;
+  vertical-align: top;
+}
+
+th {
+  background: var(--bg-tertiary);
+  color: var(--ctp-blue);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  border-bottom: 2px solid var(--ctp-blue);
+}
+
+/* Label column */
+td:first-child {
+  font-weight: 700;
+  color: var(--ctp-teal);
+  background: rgba(129, 200, 190, 0.08);
+  border-right: 2px solid var(--border-color);
+  width: 26%;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Content column */
+td:last-child {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border-light);
+}
+
+tr:hover td {
+  background: rgba(140, 170, 238, 0.05);
+}
+
+tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+tr:nth-child(even):hover td {
+  background: rgba(140, 170, 238, 0.05);
+}
+
+/* ============================================
+   ✨ TYPOGRAPHY
+   ============================================ */
+
+/* Bold - Key terms */
+strong,
+b {
+  color: var(--ctp-peach);
+  font-weight: 700;
+  text-shadow: 0 0 25px rgba(239, 159, 118, 0.25);
+}
+
+/* Italic - Examples */
+em,
+i {
+  color: var(--ctp-mauve);
+  font-style: italic;
+}
+
+/* Headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 26px;
+  color: var(--text-primary);
+  border-bottom: 3px solid var(--ctp-blue);
+  padding-bottom: 12px;
+}
+
+h2 {
+  font-size: 22px;
+  color: var(--ctp-blue);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-size: 19px;
+  color: var(--ctp-teal);
+  border-left: 4px solid var(--ctp-teal);
+  padding-left: 14px;
+  margin-left: 0;
+  border-bottom: none;
+}
+
+h4 {
+  font-size: 17px;
+  color: var(--ctp-mauve);
+}
+
+/* Links */
+a {
+  color: var(--ctp-blue);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ctp-blue);
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--ctp-sapphire);
+  border-bottom-style: solid;
+  text-shadow: 0 0 12px rgba(140, 170, 238, 0.4);
+}
+
+/* ============================================
+   💻 CODE STYLING
+   ============================================ */
+
+code,
+pre {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+code {
+  padding: 3px 8px;
+  color: var(--ctp-green);
+  border: 1px solid var(--border-color);
+}
+
+pre {
+  padding: 16px 20px;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  margin: 16px 0;
+}
+
+pre code {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* ============================================
+   📝 LISTS
+   ============================================ */
+
+ul,
+ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+li {
+  margin: 8px 0;
+  color: var(--text-primary);
+}
+
+li::marker {
+  color: var(--ctp-blue);
+}
+
+li ul,
+li ol {
+  margin: 8px 0;
+}
+
+/* ============================================
+   💬 BLOCKQUOTES
+   ============================================ */
+
+blockquote {
+  margin: 20px 0;
+  padding: 16px 24px;
+  background: linear-gradient(
+    90deg,
+    rgba(202, 158, 230, 0.1) 0%,
+    transparent 100%
+  );
+  border-left: 4px solid var(--ctp-mauve);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+blockquote strong {
+  color: var(--ctp-mauve);
+}
+
+/* Horizontal Rule */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-color),
+    transparent
+  );
+  margin: 32px 0;
+}
+
+/* ============================================
+   🎓 LEARNING-SPECIFIC CLASSES
+   ============================================ */
+
+/* German word highlight */
+.german,
+.word {
+  color: var(--ctp-peach);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+/* English translation */
+.english,
+.translation {
+  color: var(--ctp-green);
+}
+
+/* Example sentences */
+.example {
+  color: var(--text-secondary);
+  font-style: italic;
+  padding: 14px 18px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  border-left: 3px solid var(--ctp-mauve);
+}
+
+/* Hint/Note */
+.hint,
+.note {
+  color: var(--ctp-teal);
+  font-size: 14px;
+  padding: 12px 16px;
+  background: rgba(129, 200, 190, 0.1);
+  border-radius: var(--radius-sm);
+  margin-top: 16px;
+  border: 1px solid rgba(129, 200, 190, 0.2);
+}
+
+/* Important/Warning */
+.important,
+.warning {
+  color: var(--ctp-red);
+  font-weight: 600;
+}
+
+/* Grammar notes */
+.grammar {
+  color: var(--ctp-blue);
+  background: rgba(140, 170, 238, 0.1);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  border: 1px solid rgba(140, 170, 238, 0.2);
+}
+
+/* Memory tips */
+.memory-tip,
+.mnemonic {
+  color: var(--ctp-yellow);
+  background: rgba(229, 200, 144, 0.1);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--ctp-yellow);
+  margin: 12px 0;
+}
+
+/* ============================================
+   🔲 CLOZE DELETIONS
+   ============================================ */
+
+.cloze {
+  color: var(--ctp-peach);
+  font-weight: 700;
+  background: rgba(239, 159, 118, 0.15);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(239, 159, 118, 0.4);
+}
+
+/* Cloze on front card - larger */
+.front .cloze {
+  font-size: 42px;
+  padding: 8px 24px;
+  animation: pulse 2.5s infinite;
+}
+
+/* ============================================
+   🖼️ IMAGES
+   ============================================ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin: 16px 0;
+  border: 2px solid var(--border-color);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+img:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Smaller images on front */
+.front img {
+  max-width: 260px;
+}
+
+/* ============================================
+   🔊 AUDIO BUTTON
+   ============================================ */
+
+.audio-icon,
+.replay-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--ctp-mauve);
+  border-radius: 50%;
+  color: var(--ctp-mauve);
+  font-size: 22px;
+  margin: 16px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.audio-icon:hover,
+.replay-button:hover {
+  background: rgba(202, 158, 230, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(202, 158, 230, 0.35);
+}
+
+/* ============================================
+   🎬 ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 159, 118, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px 6px rgba(239, 159, 118, 0.15);
+  }
+}
+
+/* ============================================
+   🎨 SELECTION & SCROLLBAR
+   ============================================ */
+
+::selection {
+  background: rgba(140, 170, 238, 0.35);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ctp-overlay0);
+}
+
+/* ============================================
+   📱 RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .question-card,
+  .front-card {
+    padding: 28px 20px;
+  }
+
+  .question,
+  .front-main {
+    font-size: 28px;
+  }
+
+  .german-word,
+  .word,
+  .vocab {
+    font-size: 34px;
+  }
+
+  .front .cloze {
+    font-size: 30px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  td:first-child {
+    width: 30%;
+    font-size: 11px;
+  }
+}

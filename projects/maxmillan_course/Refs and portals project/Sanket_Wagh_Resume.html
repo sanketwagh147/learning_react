@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanket Wagh - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #333;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in 0.6in;
+            background: white;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        
+        .name {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .contact-info {
+            font-size: 10pt;
+            color: #555;
+        }
+        
+        .contact-info a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .contact-info span {
+            margin: 0 8px;
+        }
+        
+        /* Section Styling */
+        .section {
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #2c3e50;
+            text-transform: uppercase;
+            border-bottom: 1px solid #2c3e50;
+            padding-bottom: 3px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        /* Summary */
+        .summary {
+            text-align: justify;
+        }
+        
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5px 15px;
+        }
+        
+        .skill-category {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .skill-items {
+            color: #333;
+        }
+        
+        /* Experience */
+        .experience-item {
+            margin-bottom: 12px;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .job-title {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .company {
+            font-style: italic;
+        }
+        
+        .duration {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        .location {
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        .responsibilities {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        
+        .responsibilities li {
+            margin-bottom: 3px;
+            text-align: justify;
+        }
+        
+        /* Projects */
+        .project-item {
+            margin-bottom: 10px;
+        }
+        
+        .project-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .project-tech {
+            font-size: 10pt;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .project-description {
+            margin-top: 3px;
+            padding-left: 20px;
+        }
+        
+        .project-description li {
+            margin-bottom: 2px;
+        }
+        
+        /* Education */
+        .education-item {
+            margin-bottom: 8px;
+        }
+        
+        .degree {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .institution {
+            font-style: italic;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                padding: 0.4in 0.5in;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="name">Sanket Wagh</div>
+        <div class="contact-info">
+            Pune, India <span>|</span>
+            <a href="mailto:sanketwagh147@gmail.com">sanketwagh147@gmail.com</a> <span>|</span>
+            <a href="https://www.sanketwagh.com">sanketwagh.com</a> <span>|</span>
+            <a href="https://github.com/sanketwagh147">github.com/sanketwagh147</a> <span>|</span>
+            <a href="https://linkedin.com/in/sanketwagh147">LinkedIn</a>
+        </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <div class="summary">
+            Results-driven Python Developer with 5+ years of experience in building scalable web applications, RESTful APIs, and data-driven solutions. Proficient in Django, FastAPI, and Flask frameworks with strong expertise in PostgreSQL database management. Experienced in containerization using Docker and Docker Compose for multi-container applications. Skilled in front-end technologies including HTML5, CSS3, JavaScript, and React. Passionate about clean code, best practices, and continuous learning.
+        </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+            <div class="skill-category">Programming Languages:</div>
+            <div class="skill-items">Python, JavaScript, SQL, HTML5, CSS3</div>
+            
+            <div class="skill-category">Python Frameworks:</div>
+            <div class="skill-items">Django, FastAPI, Flask, Selenium, BeautifulSoup</div>
+            
+            <div class="skill-category">Frontend Technologies:</div>
+            <div class="skill-items">React, Angular, SCSS/Sass, CSS Grid, Flexbox, Responsive Design</div>
+            
+            <div class="skill-category">Databases:</div>
+            <div class="skill-items">PostgreSQL, SQLite, MySQL</div>
+            
+            <div class="skill-category">DevOps & Tools:</div>
+            <div class="skill-items">Docker, Docker Compose, Git, GitHub, Poetry, uv, VS Code</div>
+            
+            <div class="skill-category">Data & Analytics:</div>
+            <div class="skill-items">Pandas, NumPy, Jupyter Notebooks, Matplotlib, Seaborn, Tableau</div>
+            
+            <div class="skill-category">Other:</div>
+            <div class="skill-items">REST APIs, Web Scraping, OOP, Design Patterns, Agile/Scrum</div>
+        </div>
+    </div>
+
+    <!-- Professional Experience -->
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <span class="job-title">Software Developer</span> - <span class="company">Digit Insurance</span>
+                </div>
+                <div class="duration">Current</div>
+            </div>
+            <div class="location">Pune, India</div>
+            <ul class="responsibilities">
+                <li>Develop and maintain Python-based applications and APIs to support business operations</li>
+                <li>Design and implement RESTful APIs using Django and FastAPI frameworks</li>
+                <li>Create and optimize PostgreSQL database schemas and queries for data-intensive applications</li>
+                <li>Containerize applications using Docker for consistent deployment across environments</li>
+                <li>Collaborate with cross-functional teams to deliver high-quality software solutions</li>
+                <li>Write clean, maintainable code following best practices and design patterns</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+        <div class="section-title">Key Projects</div>
+        
+        <div class="project-item">
+            <div class="project-name">Portfolio Website</div>
+            <div class="project-tech">Python, Django 4.2, PostgreSQL, Poetry, Pillow</div>
+            <ul class="project-description">
+                <li>Built a professional portfolio website using Django framework with modern Python 3.11</li>
+                <li>Implemented image handling and optimization using Pillow library</li>
+                <li>Managed dependencies efficiently using Poetry package manager</li>
+            </ul>
+        </div>
+        
+        <div class="project-item">
+            <div class="project-name">ProDuck - Productivity Tracker</div>
+            <div class="project-tech">Python, FastAPI, uv Package Manager</div>
+            <ul class="project-description">
+                <li>Developing a productivity tracking application using FastAPI for high-performance API endpoints</li>
+                <li>Utilizing modern Python tooling with uv for fast dependency resolution</li>
+            </ul>
+        </div>
+        
+        <div class="project-item">
+            <div class="project-name">STIC - Stock Trading & Investment Tool</div>
+            <div class="project-tech">Python, yfinance, Pandas, PostgreSQL, Data Visualization</div>
+            <ul class="project-description">
+                <li>Created automated stock data fetching system using yfinance API</li>
+                <li>Implemented pivot analysis and data visualization for market analysis</li>
+                <li>Built database integration for storing and querying historical stock data</li>
+            </ul>
+        </div>
+        
+        <div class="project-item">
+            <div class="project-name">Docker Multi-Container Applications</div>
+            <div class="project-tech">Docker, Docker Compose, FastAPI, PostgreSQL</div>
+            <ul class="project-description">
+                <li>Designed and implemented containerized applications with FastAPI and PostgreSQL</li>
+                <li>Created Docker Compose configurations for multi-container orchestration</li>
+            </ul>
+        </div>
+        
+        <div class="project-item">
+            <div class="project-name">Web Scraping Automation</div>
+            <div class="project-tech">Python, BeautifulSoup, Selenium, Pandas, CSV</div>
+            <ul class="project-description">
+                <li>Developed automated web scraping scripts for data extraction</li>
+                <li>Processed and exported scraped data to structured CSV formats</li>
+            </ul>
+        </div>
+        
+        <div class="project-item">
+            <div class="project-name">Advanced CSS Projects</div>
+            <div class="project-tech">HTML5, CSS3, SCSS, CSS Grid, Flexbox, Responsive Design</div>
+            <ul class="project-description">
+                <li>Built responsive web layouts including Nexter (real estate) and Trillio (hotel booking) projects</li>
+                <li>Implemented modern CSS techniques including Grid, Flexbox, and SCSS preprocessing</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Education & Certifications -->
+    <div class="section">
+        <div class="section-title">Education & Continuous Learning</div>
+        
+        <div class="education-item">
+            <div class="degree">Professional Development Courses</div>
+            <ul class="project-description">
+                <li>Complete Python Deep Dive - Advanced Python concepts and best practices</li>
+                <li>Django Web Development - Full-stack web development with Django</li>
+                <li>The Complete JavaScript Course - Modern JavaScript ES6+</li>
+                <li>Advanced CSS and Sass - Modern CSS techniques and preprocessing</li>
+                <li>React Development - Building interactive user interfaces</li>
+                <li>Angular Framework - Enterprise web application development</li>
+                <li>Data Structures & Algorithms - Problem-solving and optimization</li>
+                <li>PostgreSQL Database Management - Database design and optimization</li>
+                <li>Tableau Data Visualization - Business intelligence and analytics</li>
+            </ul>
+        </div>
+        
+        <div class="education-item">
+            <div class="degree">Coding Practice Platforms</div>
+            <div class="institution">LeetCode, HackerRank, Codewars - Algorithmic problem solving</div>
+        </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="section">
+        <div class="section-title">Additional Information</div>
+        <div class="summary">
+            <strong>GitHub:</strong> 45+ repositories including 34 public projects demonstrating Python, Django, FastAPI, JavaScript, and web development skills<br>
+            <strong>Website:</strong> <a href="https://www.sanketwagh.com">www.sanketwagh.com</a><br>
+            <strong>Active Since:</strong> July 2019 on GitHub with consistent contributions
+        </div>
+    </div>
+</body>
+</html>

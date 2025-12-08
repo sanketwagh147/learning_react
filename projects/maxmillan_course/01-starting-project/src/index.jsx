@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client';
 
-import App from './App.jsx';
-import './index.css';
-// import App from './AppTest.jsx';
-// import './indexTest.css';
+// import App from './App.jsx';
+// import './index.css';
+import App from './AppTest.jsx';
+import './indexTest.css';
 
 const entryPoint = document.getElementById('root');
 ReactDOM.createRoot(entryPoint).render(<App />);

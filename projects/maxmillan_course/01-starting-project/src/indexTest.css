@@ -9,81 +9,70 @@ body {
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(#f3f0f8, #d6d2db);
+  background: linear-gradient(#180d27, #0c0219);
   color: #e5d9f1;
   min-height: 100vh;
 }
 
 section {
-  margin: 1rem auto;
-  max-width: 30rem;
+  width: 90%;
+  max-width: 40rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #6a887f;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #000000;
 }
 
-h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+section h2 {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+ul {
+  list-style: none;
   margin: 0;
-  color: #030a1b;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.button {
-  display: inline-block;
-  margin: 0.5rem;
+article {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #87efce;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  width: 20rem;
+}
+
+article h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+article p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+article button {
+  margin: 0.5rem 0.5rem 0.5rem 0;
   padding: 0.5rem 1rem;
   border: none;
-  background: transparent;
-  font-family: 'Lato', sans-serif;
-  text-decoration: none;
+  border-radius: 4px;
+  background: #054a35;
+  color: #ffffff;
+  font-size: 0.875rem;
   cursor: pointer;
-  border-radius: 2px;
 }
 
-.icon-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.icon-button svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.button-icon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.filled-button {
-  background: linear-gradient(#7fa1f7, #6085e4);
-  color: #030a1b;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-.filled-button:hover {
-  background: linear-gradient(#89a9fb, #6890f6);
-}
-
-.filled-button:disabled {
-  background: #a3a9b7;
-  color: #3a445c;
-  box-shadow: none;
-  cursor: not-allowed;
-}
-
-.outline-button {
-  border: 1px solid #2658d6;
-  color: #2658d6;
-}
-
-.outline-button:hover {
-  background: #cbd8fc;
-}
-
-.text-button {
-  color: #2658d6;
-}
-
-.text-button:hover {
-  background: #cbd8fc;
+article button:hover {
+  background: #087f5b;
 }

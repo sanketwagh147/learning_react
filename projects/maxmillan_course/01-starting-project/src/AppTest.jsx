@@ -1,106 +1,107 @@
-export function PlusIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-    </svg>
-  );
-}
+import React from 'react';
 
-export function HomeIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fillRule="evenodd"
-        d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
-export function Button({
-  mode = 'filled',
-  children,
-  Icon = undefined,
-  ...props
-}) {
-  // Todo: Build this component!
+export function Workout({ title, description, time, onComplete }) {
+  const [isWorkingOut, setIsWorkingOut] = React.useState(false);
+  const [remainingTime, setRemainingTime] = React.useState(0);
+  const timer = React.useRef();
+  const interval = React.useRef();
+  console.log('rendering Workout:', title);
 
-  let buttonClassName = `${mode}-button`;
-  if (Icon) {
-    buttonClassName = 'icon-button';
+  function handleStopWorkout() {
+    clearTimeout(timer.current);
+    clearInterval(interval.current);
+    onComplete();
+    setIsWorkingOut(false);
+    setRemainingTime(0);
   }
-  console.log(buttonClassName);
+
+  function handleStartWorkout() {
+    setIsWorkingOut(true);
+    setRemainingTime(time);
+
+    const startTime = Date.now();
+    const endTime = startTime + time;
+
+    interval.current = setInterval(() => {
+      const timeLeft = endTime - Date.now();
+      if (timeLeft <= 0) {
+        clearInterval(interval.current);
+      } else {
+        setRemainingTime(timeLeft);
+      }
+    }, 1000);
+
+    timer.current = setTimeout(handleStopWorkout, time);
+  }
+
+  const formattedTime = Math.ceil(remainingTime / 1000);
+
   return (
-    <button mode={mode} {...props} className={buttonClassName}>
-      {Icon && (
-        <span className="icon-button">
-          {' '}
-          <Icon />{' '}
-        </span>
-      )}
-      <span className="button-label">{children} </span>
-    </button>
+    <article className="workout">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      {isWorkingOut && <p>Time remaining: {formattedTime}s</p>}
+      <p>
+        <button onClick={handleStartWorkout}>Start</button>
+        <button onClick={isWorkingOut ? handleStopWorkout : null}>Stop</button>
+      </p>
+    </article>
   );
-  // !!! Important:
-  // Wrap the icon with a <span className="button-icon"> to achieve the target look
-  // Also wrap the children prop with a <span>
 }
+
+const workouts = [
+  {
+    title: 'Pushups',
+    description: 'Do 30 pushups',
+    time: 1000 * 60 * 3,
+  },
+  {
+    title: 'Squats',
+    description: 'Do 30 squats',
+    time: 1000 * 60 * 2,
+  },
+  {
+    title: 'Pullups',
+    description: 'Do 10 pullups',
+    time: 1000 * 60 * 3,
+  },
+];
 
 function App() {
+  const [completedWorkouts, setCompletedWorkouts] = React.useState([]);
+
+  function handleWorkoutComplete(workoutTitle) {
+    setCompletedWorkouts((prevCompletedWorkouts) => [
+      ...prevCompletedWorkouts,
+      workoutTitle,
+    ]);
+  }
+
   return (
-    <div id="app">
+    <main>
       <section>
-        <h2>Filled Button (Default)</h2>
-        <p>
-          <Button>Default</Button>
-        </p>
-        <p>
-          <Button mode="filled">Filled (Default)</Button>
-        </p>
+        <h2>Choose a workout</h2>
+        <ul>
+          {workouts.map((workout) => (
+            <li key={workout.title}>
+              <Workout
+                {...workout}
+                onComplete={() => handleWorkoutComplete(workout.title)}
+              />
+            </li>
+          ))}
+        </ul>
       </section>
+
       <section>
-        <h2>Button with Outline</h2>
-        <p>
-          <Button mode="outline">Outline</Button>
-        </p>
+        <h2>Completed workouts</h2>
+        <ul>
+          {completedWorkouts.map((workoutTitle, index) => (
+            <li key={index}>{workoutTitle}</li>
+          ))}
+        </ul>
       </section>
-      <section>
-        <h2>Text-only Button</h2>
-        <p>
-          <Button mode="text">Text</Button>
-        </p>
-      </section>
-      <section>
-        <h2>Button with Icon</h2>
-        <p>
-          <Button Icon={HomeIcon}>Home</Button>
-        </p>
-        <p>
-          <Button Icon={PlusIcon} mode="text">
-            Add
-          </Button>
-        </p>
-      </section>
-      <section>
-        <h2>Buttons Should Support Any Props</h2>
-        <p>
-          <Button mode="filled" disabled>
-            Disabled
-          </Button>
-        </p>
-        <p>
-          <Button onClick={() => console.log('Clicked!')}>Click me</Button>
-        </p>
-      </section>
-    </div>
+    </main>
   );
 }
 
