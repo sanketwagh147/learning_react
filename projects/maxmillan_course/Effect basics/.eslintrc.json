@@ -29,7 +29,8 @@
         "no-unused-vars": "warn",
         "no-undef": "error",
         "import/no-unresolved": "error",
-        "import/named": "error"
+        "import/named": "error",
+        "react-hooks/exhaustive-deps": "warn"
     },
     "settings": {
         "react": {
