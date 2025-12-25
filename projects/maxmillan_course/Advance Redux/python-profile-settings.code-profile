@@ -1,0 +1,238 @@
+{
+  "name": "Python Development Profile - Professional",
+  "settings": {
+    // ===== PYTHON CORE CONFIGURATION =====
+    "python.defaultInterpreterPath": "python3",
+    "python.languageServer": "Pylance",
+    
+    // Pylance Analysis (Enhanced Type Checking)
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.inlayHints.pytestParameters": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.indexing": true,
+    
+    // ===== FORMATTING (Using Ruff - Modern Standard) =====
+    "[python]": {
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll": "explicit"
+      }
+    },
+    "ruff.format.args": ["--line-length=88"],
+    "ruff.lint.args": ["--select=E,F,W,I,N,UP,B,A,C4,SIM,ARG"],
+    "ruff.lint.run": "onType",
+    
+    // ===== TESTING (Pytest Configuration) =====
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+      "-v",
+      "--tb=short",
+      "--color=yes"
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.testing.promptToConfigure": false,
+    
+    // ===== EDITOR ENHANCEMENTS =====
+    "editor.rulers": [88, 120],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.wordWrap": "off",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.suggestSelection": "first",
+    "editor.inlineSuggest.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.parameterHints.enabled": true,
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    
+    // ===== FILES =====
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true,
+      "**/htmlcov": true,
+      "**/.coverage": true
+    },
+    
+    // ===== INTELLISENSE & AI =====
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "github.copilot.enable": {
+      "*": true,
+      "python": true,
+      "markdown": true
+    },
+    
+    // ===== TERMINAL =====
+    "terminal.integrated.env.osx": {
+      "PYTHONPATH": "${workspaceFolder}"
+    },
+    "terminal.integrated.env.linux": {
+      "PYTHONPATH": "${workspaceFolder}"
+    },
+    "terminal.integrated.env.windows": {
+      "PYTHONPATH": "${workspaceFolder}"
+    },
+    
+    // ===== JUPYTER NOTEBOOKS =====
+    "jupyter.askForKernelRestart": false,
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "notebook.cellToolbarLocation": {
+      "default": "right",
+      "jupyter-notebook": "left"
+    },
+    "notebook.output.textLineLimit": 100,
+    "notebook.formatOnSave.enabled": true,
+    
+    // ===== DOCSTRING GENERATION =====
+    "autoDocstring.docstringFormat": "google",
+    "autoDocstring.startOnNewLine": false,
+    "autoDocstring.includeExtendedSummary": true,
+    
+    // ===== GIT INTEGRATION =====
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "gitlens.codeLens.enabled": true,
+    "gitlens.currentLine.enabled": true,
+    
+    // ===== DEBUG CONFIGURATION =====
+    "debug.internalConsoleOptions": "openOnSessionStart",
+    "debug.showBreakpointsInOverviewRuler": true,
+    "debug.console.fontSize": 14,
+    
+    // ===== ADDITIONAL ENHANCEMENTS =====
+    "workbench.colorCustomizations": {
+      "[Default Dark Modern]": {
+        "editor.rulers": "#1f4662"
+      }
+    },
+    "errorLens.enabled": true,
+    "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+    "path-intellisense.autoSlashAfterDirectory": true,
+    "todo-tree.general.tags": ["TODO", "FIXME", "BUG", "HACK", "NOTE"],
+    "better-comments.tags": [
+      {
+        "tag": "!",
+        "color": "#FF2D00",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "?",
+        "color": "#3498DB",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "//",
+        "color": "#474747",
+        "strikethrough": true,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "todo",
+        "color": "#FF8C00",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "*",
+        "color": "#98C379",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      }
+    ]
+  },
+  "extensions": [
+    // ===== CORE PYTHON STACK =====
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy",
+    
+    // ===== MODERN FORMATTING & LINTING (Ruff - All-in-One) =====
+    "charliermarsh.ruff",
+    
+    // ===== TYPE CHECKING & QUALITY =====
+    "ms-python.mypy-type-checker",
+    
+    // ===== JUPYTER & DATA SCIENCE =====
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    
+    // ===== AI & PRODUCTIVITY =====
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "VisualStudioExptTeam.vscodeintellicode-completions",
+    
+    // ===== DOCUMENTATION =====
+    "njpwerner.autodocstring",
+    
+    // ===== ENVIRONMENT MANAGEMENT =====
+    "donjayamanne.python-environment-manager",
+    "kevinrose.vsc-python-indent",
+    
+    // ===== ERROR VISUALIZATION =====
+    "usernamehw.errorlens",
+    
+    // ===== GIT ENHANCEMENTS =====
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    
+    // ===== DOCKER & CONTAINERS =====
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+    
+    // ===== PRODUCTIVITY BOOSTERS =====
+    "christian-kohler.path-intellisense",
+    "Gruntfuggly.todo-tree",
+    "aaron-bond.better-comments",
+    "oderwat.indent-rainbow",
+    "PKief.material-icon-theme",
+    
+    // ===== REST API TESTING =====
+    "humao.rest-client",
+    
+    // ===== MARKDOWN & DOCUMENTATION =====
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    
+    // ===== CODE SNIPPETS =====
+    "ms-python.vscode-pylance",
+    "fernandobasso.code-snippets-python"
+  ]
+}

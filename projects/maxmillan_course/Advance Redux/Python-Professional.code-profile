@@ -1,0 +1,170 @@
+{
+  "name": "Python Development Profile - Professional",
+  "settings": "{\"python.defaultInterpreterPath\":\"python3\",\"python.languageServer\":\"Pylance\",\"python.analysis.typeCheckingMode\":\"standard\",\"python.analysis.autoImportCompletions\":true,\"python.analysis.autoSearchPaths\":true,\"python.analysis.diagnosticMode\":\"workspace\",\"python.analysis.inlayHints.functionReturnTypes\":true,\"python.analysis.inlayHints.variableTypes\":true,\"python.analysis.inlayHints.pytestParameters\":true,\"python.analysis.completeFunctionParens\":true,\"python.analysis.indexing\":true,\"[python]\":{\"editor.defaultFormatter\":\"charliermarsh.ruff\",\"editor.formatOnSave\":true,\"editor.codeActionsOnSave\":{\"source.organizeImports\":\"explicit\",\"source.fixAll\":\"explicit\"}},\"ruff.format.args\":[\"--line-length=88\"],\"ruff.lint.args\":[\"--select=E,F,W,I,N,UP,B,A,C4,SIM,ARG\"],\"ruff.lint.run\":\"onType\",\"python.testing.pytestEnabled\":true,\"python.testing.unittestEnabled\":false,\"python.testing.pytestArgs\":[\"-v\",\"--tb=short\",\"--color=yes\"],\"python.testing.autoTestDiscoverOnSaveEnabled\":true,\"python.testing.promptToConfigure\":false,\"editor.rulers\":[88,120],\"editor.tabSize\":4,\"editor.insertSpaces\":true,\"editor.detectIndentation\":false,\"editor.wordWrap\":\"off\",\"editor.formatOnPaste\":true,\"editor.formatOnType\":true,\"editor.suggestSelection\":\"first\",\"editor.inlineSuggest.enabled\":true,\"editor.bracketPairColorization.enabled\":true,\"editor.guides.bracketPairs\":\"active\",\"editor.parameterHints.enabled\":true,\"editor.quickSuggestions\":{\"strings\":true},\"files.trimTrailingWhitespace\":true,\"files.insertFinalNewline\":true,\"files.trimFinalNewlines\":true,\"files.exclude\":{\"**/__pycache__\":true,\"**/*.pyc\":true,\"**/.pytest_cache\":true,\"**/.mypy_cache\":true,\"**/.ruff_cache\":true,\"**/htmlcov\":true,\"**/.coverage\":true},\"vsintellicode.modify.editor.suggestSelection\":\"automaticallyOverrodeDefaultValue\",\"github.copilot.enable\":{\"*\":true,\"python\":true,\"markdown\":true},\"terminal.integrated.env.osx\":{\"PYTHONPATH\":\"${workspaceFolder}\"},\"terminal.integrated.env.linux\":{\"PYTHONPATH\":\"${workspaceFolder}\"},\"terminal.integrated.env.windows\":{\"PYTHONPATH\":\"${workspaceFolder}\"},\"jupyter.askForKernelRestart\":false,\"jupyter.interactiveWindow.textEditor.executeSelection\":true,\"notebook.cellToolbarLocation\":{\"default\":\"right\",\"jupyter-notebook\":\"left\"},\"notebook.output.textLineLimit\":100,\"notebook.formatOnSave.enabled\":true,\"autoDocstring.docstringFormat\":\"google\",\"autoDocstring.startOnNewLine\":false,\"autoDocstring.includeExtendedSummary\":true,\"git.autofetch\":true,\"git.confirmSync\":false,\"gitlens.codeLens.enabled\":true,\"gitlens.currentLine.enabled\":true,\"debug.internalConsoleOptions\":\"openOnSessionStart\",\"debug.showBreakpointsInOverviewRuler\":true,\"debug.console.fontSize\":14,\"workbench.colorCustomizations\":{\"[Default Dark Modern]\":{\"editor.rulers\":\"#1f4662\"}},\"errorLens.enabled\":true,\"errorLens.enabledDiagnosticLevels\":[\"error\",\"warning\"],\"path-intellisense.autoSlashAfterDirectory\":true,\"todo-tree.general.tags\":[\"TODO\",\"FIXME\",\"BUG\",\"HACK\",\"NOTE\"],\"better-comments.tags\":[{\"tag\":\"!\",\"color\":\"#FF2D00\",\"strikethrough\":false,\"underline\":false,\"backgroundColor\":\"transparent\",\"bold\":false,\"italic\":false},{\"tag\":\"?\",\"color\":\"#3498DB\",\"strikethrough\":false,\"underline\":false,\"backgroundColor\":\"transparent\",\"bold\":false,\"italic\":false},{\"tag\":\"//\",\"color\":\"#474747\",\"strikethrough\":true,\"underline\":false,\"backgroundColor\":\"transparent\",\"bold\":false,\"italic\":false},{\"tag\":\"todo\",\"color\":\"#FF8C00\",\"strikethrough\":false,\"underline\":false,\"backgroundColor\":\"transparent\",\"bold\":false,\"italic\":false},{\"tag\":\"*\",\"color\":\"#98C379\",\"strikethrough\":false,\"underline\":false,\"backgroundColor\":\"transparent\",\"bold\":false,\"italic\":false}]}",
+  "extensions": [
+    {
+      "identifier": {
+        "id": "ms-python.python",
+        "uuid": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-python.vscode-pylance",
+        "uuid": "364d2426-116a-433a-a5d8-a5098dc3afbd"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-python.debugpy",
+        "uuid": "d4b51c7f-5d9f-4b1b-a9f5-0e5f2c5a4c4e"
+      }
+    },
+    {
+      "identifier": {
+        "id": "charliermarsh.ruff",
+        "uuid": "00d024c2-424d-4d0d-b9dd-4e9f4d6f5e5e"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-python.mypy-type-checker"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-toolsai.jupyter",
+        "uuid": "6c2f1801-1e7f-45b2-9b5c-7c8b5c4a9a9a"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-toolsai.jupyter-keymap"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-toolsai.jupyter-renderers"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-toolsai.vscode-jupyter-cell-tags"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-toolsai.vscode-jupyter-slideshow"
+      }
+    },
+    {
+      "identifier": {
+        "id": "GitHub.copilot",
+        "uuid": "23c4aeee-f844-43cd-b53e-1113e483f1a6"
+      }
+    },
+    {
+      "identifier": {
+        "id": "GitHub.copilot-chat",
+        "uuid": "7ec7e8b7-5b8e-4e5e-8c5e-5c5e5c5e5c5e"
+      }
+    },
+    {
+      "identifier": {
+        "id": "VisualStudioExptTeam.vscodeintellicode",
+        "uuid": "876e8f93-74d0-4f4f-91b7-34a09f19f444"
+      }
+    },
+    {
+      "identifier": {
+        "id": "VisualStudioExptTeam.vscodeintellicode-completions"
+      }
+    },
+    {
+      "identifier": {
+        "id": "njpwerner.autodocstring",
+        "uuid": "3d1e7e8f-4e5f-4e5f-8e5f-5e5f5e5f5e5f"
+      }
+    },
+    {
+      "identifier": {
+        "id": "donjayamanne.python-environment-manager"
+      }
+    },
+    {
+      "identifier": {
+        "id": "kevinrose.vsc-python-indent"
+      }
+    },
+    {
+      "identifier": {
+        "id": "usernamehw.errorlens",
+        "uuid": "9d8c8566-5e2d-4e5e-8c5e-5c5e5c5e5c5e"
+      }
+    },
+    {
+      "identifier": {
+        "id": "eamodio.gitlens",
+        "uuid": "4de763bd-505d-4978-9575-2b7696ecf94e"
+      }
+    },
+    {
+      "identifier": {
+        "id": "mhutchie.git-graph"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-azuretools.vscode-docker",
+        "uuid": "0479fc1c-3d67-49f9-b087-fb9069afe48f"
+      }
+    },
+    {
+      "identifier": {
+        "id": "ms-vscode-remote.remote-containers",
+        "uuid": "93ce222b-5f6f-49b7-9ab1-a0463c6238df"
+      }
+    },
+    {
+      "identifier": {
+        "id": "christian-kohler.path-intellisense"
+      }
+    },
+    {
+      "identifier": {
+        "id": "Gruntfuggly.todo-tree"
+      }
+    },
+    {
+      "identifier": {
+        "id": "aaron-bond.better-comments"
+      }
+    },
+    {
+      "identifier": {
+        "id": "oderwat.indent-rainbow"
+      }
+    },
+    {
+      "identifier": {
+        "id": "PKief.material-icon-theme",
+        "uuid": "5db78037-f674-459f-a236-db622c427c5b"
+      }
+    },
+    {
+      "identifier": {
+        "id": "humao.rest-client"
+      }
+    },
+    {
+      "identifier": {
+        "id": "yzhang.markdown-all-in-one"
+      }
+    },
+    {
+      "identifier": {
+        "id": "DavidAnson.vscode-markdownlint"
+      }
+    }
+  ]
+}
