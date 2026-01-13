@@ -45,6 +45,10 @@ export async function action({ request }) {
   // store in memory / cookie or / local storage
 
   localStorage.setItem('token', token)
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem('expiration', expiration.toISOString())
+
 
   return redirect('/')
 }

@@ -15,12 +15,15 @@ import { action as manipulateEventAction } from './components/EventForm';
 import NewsletterPage, { action as newsletterAction } from './pages/Newsletter';
 import AuthenticationPage, {action as authAction} from './pages/Authentication';
 import {action as logoutActon} from './pages/Logout'
+import { checkAuthLoader, tokenLoader } from './util/auth';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id:"root",
+    loader: tokenLoader, // Loads token
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
             path: ':eventId',
             id: 'event-detail',
             loader: eventDetailLoader,
-            children: [
+           children: [
               {
                 index: true,
                 element: <EventDetailPage />,
@@ -46,6 +49,7 @@ const router = createBrowserRouter([
                 path: 'edit',
                 element: <EditEventPage />,
                 action: manipulateEventAction,
+                loader:checkAuthLoader // avoids unauthorized access to edit event
               },
             ],
           },
@@ -53,6 +57,7 @@ const router = createBrowserRouter([
             path: 'new',
             element: <NewEventPage />,
             action: manipulateEventAction,
+            loader:checkAuthLoader // avoids unauthorized access to edit event
           },
         ],
       },
