@@ -960,6 +960,100 @@ function Parent() {
 
 ---
 
+## Common Performance Anti-Patterns
+
+### Anti-Pattern 1: Premature Optimization
+
+```jsx
+// ❌ Don't wrap everything in memo/useCallback
+function Parent() {
+  // This is overkill - Button isn't expensive and isn't memoized
+  const handleClick = useCallback(() => {
+    console.log('clicked');
+  }, []);
+
+  return <button onClick={handleClick}>Click</button>;
+}
+
+// ✅ Only optimize when there's a real problem
+function Parent() {
+  const handleClick = () => console.log('clicked');
+  return <button onClick={handleClick}>Click</button>;
+}
+```
+
+### Anti-Pattern 2: Wrong Dependency Arrays
+
+```jsx
+// ❌ Missing dependencies - stale closures
+function Search({ query }) {
+  const search = useCallback(() => {
+    fetch(`/api/search?q=${query}`); // query not in deps!
+  }, []); // Empty deps = query is always stale
+
+  // ✅ Include all dependencies
+  const search = useCallback(() => {
+    fetch(`/api/search?q=${query}`);
+  }, [query]);
+}
+```
+
+### Anti-Pattern 3: Putting Everything in One Context
+
+```jsx
+// ❌ One massive context - every consumer re-renders on any change
+const AppContext = createContext({
+  user: null,
+  theme: 'light',
+  cart: [],
+  notifications: [],
+  // ... everything
+});
+
+// ✅ Split into focused contexts
+<UserProvider>
+  <ThemeProvider>
+    <CartProvider>
+      <NotificationProvider>
+        <App />
+      </NotificationProvider>
+    </CartProvider>
+  </ThemeProvider>
+</UserProvider>;
+```
+
+---
+
+## Real-World Performance Example: Virtual List
+
+```jsx
+// For lists with 1000+ items, use virtualization
+import { FixedSizeList as List } from 'react-window';
+
+function VirtualizedList({ items }) {
+  const Row = ({ index, style }) => (
+    <div style={style} className="list-row">
+      {items[index].name}
+    </div>
+  );
+
+  return (
+    <List
+      height={400} // Container height
+      width="100%" // Container width
+      itemCount={items.length}
+      itemSize={50} // Row height
+    >
+      {Row}
+    </List>
+  );
+}
+
+// Only ~10 DOM elements exist at a time, not 1000!
+```
+
+---
+
 ## Summary Cheat Sheet
 
 ```jsx
@@ -998,7 +1092,7 @@ const LazyComponent = lazy(() => import('./Component'));
 
 ```
 Is the component slow?
-├── No → Don't optimize
+├── No → Don't optimize (YAGNI!)
 └── Yes
     ├── Does it render too often?
     │   ├── Props changing? → memo + check prop references
@@ -1009,6 +1103,42 @@ Is the component slow?
         ├── Expensive calculations? → useMemo
         ├── Large list? → Virtualization (react-window)
         └── Many children? → Profile and optimize each
+```
+
+---
+
+## Interview Questions
+
+### Q1: When should you NOT use useMemo/useCallback?
+
+```jsx
+// Don't use for:
+// 1. Simple calculations
+const double = useMemo(() => count * 2, [count]); // Overkill!
+const double = count * 2; // Just compute it
+
+// 2. Functions not passed to memoized children
+const handleClick = useCallback(() => {}, []); // Unnecessary
+const handleClick = () => {}; // Fine for non-memoized children
+
+// 3. Primitive props
+<MemoizedChild count={count} />; // Primitives are compared by value
+```
+
+### Q2: How do you identify unnecessary re-renders?
+
+```jsx
+// 1. React DevTools Profiler (highlight updates)
+// 2. Console logs
+function MyComponent(props) {
+  console.log('MyComponent rendered');
+  return <div>{props.value}</div>;
+}
+
+// 3. useEffect to track renders
+useEffect(() => {
+  console.log('Rendered with:', props);
+});
 ```
 
 ---

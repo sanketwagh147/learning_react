@@ -878,10 +878,10 @@ Object.is(0, -0); // false (=== returns true!)
 
 ```javascript
 // Falsy values (6 total):
-false, 0, '', null, undefined, NaN;
+(false, 0, '', null, undefined, NaN);
 
 // Everything else is truthy, including:
-'0', ' ', [], {}, function () {};
+('0', ' ', [], {}, function () {});
 
 // Practical usage
 const name = user.name || 'Guest'; // Default for falsy
@@ -1125,4 +1125,6 @@ x instanceof Y; // true/false
 
 ---
 
-_Created: December 2024 | Essential JavaScript for React Developers_
+_Next: [18-tanstack-query.md](./18-tanstack-query.md)_
+
+_Back to: [00-index.md](./00-index.md)_

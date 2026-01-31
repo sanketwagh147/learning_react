@@ -924,3 +924,72 @@ const renderWithProviders = (ui) => render(<Providers>{ui}</Providers>);
 const { result } = renderHook(() => useMyHook());
 act(() => result.current.doSomething());
 ```
+
+---
+
+## 🎯 Common Interview Questions
+
+### Q1: What is the difference between getBy, queryBy, and findBy?
+
+**Answer:**
+
+- **getBy**: Throws error if not found (use when element should exist)
+- **queryBy**: Returns null if not found (use to assert non-existence)
+- **findBy**: Returns Promise, waits for element (use for async content)
+
+### Q2: Why should you avoid testing implementation details?
+
+**Answer:** Implementation details can change without affecting user experience. Test behavior (what users see) instead of internal state or method calls. This makes tests more resilient to refactoring.
+
+### Q3: What is the testing trophy and why does it matter?
+
+**Answer:** The testing trophy suggests prioritizing:
+
+1. **Static Analysis** (TypeScript, ESLint) - base
+2. **Unit Tests** - some targeted tests
+3. **Integration Tests** - most tests here
+4. **E2E Tests** - few high-value tests
+
+Integration tests give the best balance of confidence and maintenance cost.
+
+### Q4: How do you test async operations?
+
+**Answer:**
+
+```jsx
+// Use findBy for elements that appear after async
+const element = await screen.findByText('Loaded');
+
+// Use waitFor for assertions
+await waitFor(() => expect(mockFn).toHaveBeenCalled());
+
+// Use userEvent with await
+const user = userEvent.setup();
+await user.click(button);
+```
+
+### Q5: How do you mock API calls in tests?
+
+**Answer:**
+
+```jsx
+// Mock the fetch function
+jest.mock('axios');
+axios.get.mockResolvedValue({ data: { id: 1, name: 'Test' } });
+
+// Or use MSW (Mock Service Worker) for more realistic mocking
+```
+
+---
+
+## Practice Exercises
+
+1. Write tests for a login form with validation
+2. Test a component that fetches and displays data
+3. Test custom hooks with renderHook
+4. Create a test utility with providers for your app
+5. Write integration tests for a multi-step form
+
+---
+
+_Next: [14-typescript-react.md](./14-typescript-react.md)_

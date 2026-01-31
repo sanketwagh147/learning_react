@@ -760,6 +760,214 @@ function Link() {
 
 ---
 
+## Real-World Example: Product Card Component
+
+Let's build a complete, reusable product card that combines all the concepts:
+
+```jsx
+// ProductCard.jsx - A complete reusable component
+function ProductCard({
+  product,
+  onAddToCart,
+  onToggleFavorite,
+  isFavorite = false,
+}) {
+  const { id, name, price, image, rating, reviews, inStock } = product;
+
+  // Event handlers
+  const handleAddToCart = () => {
+    if (inStock) {
+      onAddToCart(product);
+    }
+  };
+
+  // Derived values
+  const formattedPrice = `$${price.toFixed(2)}`;
+  const hasDiscount = product.originalPrice > price;
+  const discountPercent = hasDiscount
+    ? Math.round((1 - price / product.originalPrice) * 100)
+    : 0;
+
+  return (
+    <article className="product-card">
+      {/* Image with conditional badge */}
+      <div className="product-image">
+        <img src={image} alt={name} />
+        {hasDiscount && (
+          <span className="discount-badge">-{discountPercent}%</span>
+        )}
+        <button
+          className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+          onClick={() => onToggleFavorite(id)}
+          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        >
+          {isFavorite ? '❤️' : '🤍'}
+        </button>
+      </div>
+
+      {/* Product Info */}
+      <div className="product-info">
+        <h3 className="product-name">{name}</h3>
+
+        {/* Rating */}
+        <div className="product-rating">
+          {'⭐'.repeat(Math.round(rating))}
+          <span className="review-count">({reviews} reviews)</span>
+        </div>
+
+        {/* Price */}
+        <div className="product-price">
+          <span className="current-price">{formattedPrice}</span>
+          {hasDiscount && (
+            <span className="original-price">
+              ${product.originalPrice.toFixed(2)}
+            </span>
+          )}
+        </div>
+
+        {/* Add to Cart */}
+        <button
+          className={`add-to-cart ${!inStock ? 'disabled' : ''}`}
+          onClick={handleAddToCart}
+          disabled={!inStock}
+        >
+          {inStock ? 'Add to Cart' : 'Out of Stock'}
+        </button>
+      </div>
+    </article>
+  );
+}
+
+// Usage in parent component
+function ProductGrid() {
+  const [favorites, setFavorites] = useState(new Set());
+  const [cart, setCart] = useState([]);
+
+  const products = [
+    {
+      id: 1,
+      name: 'Wireless Headphones',
+      price: 79.99,
+      originalPrice: 99.99,
+      image: '/headphones.jpg',
+      rating: 4.5,
+      reviews: 128,
+      inStock: true,
+    },
+    {
+      id: 2,
+      name: 'Smart Watch',
+      price: 199.99,
+      originalPrice: 199.99,
+      image: '/watch.jpg',
+      rating: 4.8,
+      reviews: 256,
+      inStock: false,
+    },
+  ];
+
+  const toggleFavorite = (productId) => {
+    setFavorites((prev) => {
+      const newFavorites = new Set(prev);
+      if (newFavorites.has(productId)) {
+        newFavorites.delete(productId);
+      } else {
+        newFavorites.add(productId);
+      }
+      return newFavorites;
+    });
+  };
+
+  const addToCart = (product) => {
+    setCart((prev) => [...prev, { ...product, quantity: 1 }]);
+  };
+
+  return (
+    <div className="product-grid">
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          isFavorite={favorites.has(product.id)}
+          onToggleFavorite={toggleFavorite}
+          onAddToCart={addToCart}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+---
+
+## Common Interview Questions
+
+### Q1: What is the difference between Real DOM and Virtual DOM?
+
+```jsx
+// Real DOM: Direct browser manipulation (slow)
+document.getElementById('app').innerHTML = '<h1>Hello</h1>';
+
+// Virtual DOM: React's in-memory representation (fast)
+// React compares Virtual DOMs and updates only what changed
+function App() {
+  return <h1>Hello</h1>; // Creates Virtual DOM element
+}
+```
+
+### Q2: Why shouldn't you use index as key in lists?
+
+```jsx
+// ❌ Problem with index keys when list can change
+const [items, setItems] = useState(['A', 'B', 'C']);
+
+// Initial render: A(key=0), B(key=1), C(key=2)
+// After removing 'A': B(key=0), C(key=1)
+// React thinks B is now A, C is now B - wrong updates!
+
+// ✅ Use unique IDs
+{
+  items.map((item) => <li key={item.id}>{item.name}</li>);
+}
+```
+
+### Q3: What's the difference between controlled and uncontrolled components?
+
+```jsx
+// Controlled: React controls the value
+function Controlled() {
+  const [value, setValue] = useState('');
+  return <input value={value} onChange={(e) => setValue(e.target.value)} />;
+}
+
+// Uncontrolled: DOM controls the value
+function Uncontrolled() {
+  const inputRef = useRef();
+  const handleSubmit = () => console.log(inputRef.current.value);
+  return <input ref={inputRef} defaultValue="" />;
+}
+```
+
+### Q4: How does React handle events differently?
+
+```jsx
+// React uses SyntheticEvents - cross-browser wrapper
+function Button() {
+  const handleClick = (event) => {
+    // event is a SyntheticEvent
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Access native event if needed
+    console.log(event.nativeEvent);
+  };
+
+  return <button onClick={handleClick}>Click</button>;
+}
+```
+
+---
+
 ## Summary
 
 | Concept                   | Key Point                                        |

@@ -877,6 +877,63 @@ function Component() {
 
 ---
 
+## 🎯 Common Interview Questions
+
+### Q1: What is prop drilling and how does Context solve it?
+
+**Answer:** Prop drilling is passing props through multiple levels of components that don't need them, just to reach a deeply nested child. Context allows any component to access shared state directly without passing through intermediaries.
+
+### Q2: When should you NOT use Context?
+
+**Answer:**
+
+- Data that changes very frequently (performance issues)
+- Data used by only 1-2 closely related components
+- As a replacement for all state management
+- When you need time-travel debugging or Redux DevTools
+
+### Q3: How do you prevent unnecessary re-renders with Context?
+
+**Answer:**
+
+1. **Split contexts** - Separate frequently changing from stable values
+2. **Memoize the provider value** - Use `useMemo` on the context value
+3. **Memoize consumers** - Use `React.memo` on consuming components
+4. **Use selectors** - Only subscribe to needed parts of context
+
+```jsx
+// Memoize context value
+const value = useMemo(() => ({ state, actions }), [state]);
+```
+
+### Q4: Explain createContext default value usage.
+
+**Answer:** The default value is used when:
+
+- No Provider is found above in the tree
+- For TypeScript type inference
+- Testing components in isolation
+
+```jsx
+const ThemeContext = createContext('light'); // 'light' is default
+```
+
+### Q5: How do you test components that use Context?
+
+**Answer:**
+
+1. Wrap component in the Provider during testing
+2. Create a test utility with custom wrapper
+3. Mock the context value for unit tests
+
+```jsx
+function renderWithProvider(ui, { value }) {
+  return render(<MyContext.Provider value={value}>{ui}</MyContext.Provider>);
+}
+```
+
+---
+
 ## Practice Exercises
 
 1. Create a `ThemeContext` with light/dark mode toggle

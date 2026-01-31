@@ -1045,3 +1045,62 @@ function App() {
 4. Render Props → Rare, specific use cases
 5. HOCs → Legacy code, avoid for new code
 ```
+
+---
+
+## 🎯 Common Interview Questions
+
+### Q1: Explain the Compound Component pattern.
+
+**Answer:** Compound components are multiple components that work together sharing implicit state via Context. Like HTML's `<select>` and `<option>`. Benefits:
+
+- Flexible, declarative API
+- Implicit state sharing
+- Clear parent-child relationship
+
+### Q2: What is the difference between Render Props and HOCs?
+
+**Answer:**
+
+- **Render Props**: Pass a function as a prop that returns JSX. More explicit, avoids "wrapper hell"
+- **HOCs**: Function that takes a component and returns enhanced component. Can lead to prop collision and nesting issues
+- **Modern choice**: Custom Hooks replace both in most cases
+
+### Q3: When would you use the State Reducer pattern?
+
+**Answer:** When you want to give consumers control over state changes:
+
+- Component library where users need customization
+- Complex state logic that varies by use case
+- When you want to enforce constraints while allowing flexibility
+
+### Q4: What is the Container/Presentational pattern?
+
+**Answer:**
+
+- **Container**: Handles data fetching, state, logic
+- **Presentational**: Pure UI, receives everything via props
+- Benefit: Clear separation of concerns, easier testing
+- Modern alternative: Custom Hooks often replace containers
+
+### Q5: How do Custom Hooks differ from HOCs?
+
+**Answer:**
+
+- **Custom Hooks**: Share logic, not JSX. No wrapper component. Direct access to hook features
+- **HOCs**: Wrap components, can inject props. Creates extra DOM nodes. Harder to debug
+- Custom Hooks are the modern, preferred approach
+
+---
+
+## Practice Exercises
+
+1. Build a compound component for a Dropdown menu
+2. Create a generic Table component with render props for cells
+3. Implement a useForm hook using the state reducer pattern
+4. Build a Modal system using the Provider pattern
+5. Refactor a HOC to a Custom Hook
+
+---
+
+_Next: [16-react-18-19-features.md](./16-react-18-19-features.md)_

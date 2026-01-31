@@ -1299,6 +1299,214 @@ function FormWithFeedback() {
 
 ---
 
+## Real-World Example: Complete Registration Form
+
+```jsx
+function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    agreeToTerms: false,
+  });
+
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Validation rules
+  const validate = (data) => {
+    const errors = {};
+
+    if (!data.username.trim()) {
+      errors.username = 'Username is required';
+    } else if (data.username.length < 3) {
+      errors.username = 'Username must be at least 3 characters';
+    }
+
+    if (!data.email) {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      errors.email = 'Invalid email format';
+    }
+
+    if (!data.password) {
+      errors.password = 'Password is required';
+    } else if (data.password.length < 8) {
+      errors.password = 'Password must be at least 8 characters';
+    } else if (!/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/.test(data.password)) {
+      errors.password =
+        'Password must include uppercase, lowercase, and number';
+    }
+
+    if (data.password !== data.confirmPassword) {
+      errors.confirmPassword = 'Passwords do not match';
+    }
+
+    if (!data.agreeToTerms) {
+      errors.agreeToTerms = 'You must agree to the terms';
+    }
+
+    return errors;
+  };
+
+  // Validate on every change
+  useEffect(() => {
+    setErrors(validate(formData));
+  }, [formData]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleBlur = (e) => {
+    setTouched((prev) => ({ ...prev, [e.target.name]: true }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Mark all fields as touched
+    const allTouched = Object.keys(formData).reduce(
+      (acc, key) => ({ ...acc, [key]: true }),
+      {}
+    );
+    setTouched(allTouched);
+
+    const validationErrors = validate(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      setSubmitStatus('success');
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getFieldError = (field) => {
+    return touched[field] && errors[field] ? errors[field] : null;
+  };
+
+  const isValid = Object.keys(errors).length === 0;
+
+  if (submitStatus === 'success') {
+    return (
+      <div className="success">Registration successful! Check your email.</div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} noValidate>
+      {submitStatus === 'error' && (
+        <div className="error-banner">
+          Registration failed. Please try again.
+        </div>
+      )}
+
+      <FormField
+        label="Username"
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={getFieldError('username')}
+      />
+
+      <FormField
+        label="Email"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={getFieldError('email')}
+      />
+
+      <FormField
+        label="Password"
+        name="password"
+        type="password"
+        value={formData.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={getFieldError('password')}
+      />
+
+      <FormField
+        label="Confirm Password"
+        name="confirmPassword"
+        type="password"
+        value={formData.confirmPassword}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={getFieldError('confirmPassword')}
+      />
+
+      <div className="checkbox-field">
+        <input
+          type="checkbox"
+          id="agreeToTerms"
+          name="agreeToTerms"
+          checked={formData.agreeToTerms}
+          onChange={handleChange}
+        />
+        <label htmlFor="agreeToTerms">
+          I agree to the Terms and Conditions
+        </label>
+        {getFieldError('agreeToTerms') && (
+          <span className="error">{getFieldError('agreeToTerms')}</span>
+        )}
+      </div>
+
+      <button type="submit" disabled={isSubmitting || !isValid}>
+        {isSubmitting ? 'Creating Account...' : 'Create Account'}
+      </button>
+    </form>
+  );
+}
+
+// Reusable FormField component
+function FormField({ label, name, type = 'text', error, ...props }) {
+  return (
+    <div className={`form-field ${error ? 'has-error' : ''}`}>
+      <label htmlFor={name}>{label}</label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${name}-error` : undefined}
+        {...props}
+      />
+      {error && (
+        <span id={`${name}-error`} className="error" role="alert">
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}
+```
+
+---
+
 ## Summary Cheat Sheet
 
 ```jsx

@@ -1131,3 +1131,89 @@ function List<T>({ items }: { items: T[] }) {
   return null;
 }
 ```
+
+---
+
+## 🎯 Common Interview Questions
+
+### Q1: What is the difference between `type` and `interface`?
+
+**Answer:**
+
+- **Interface**: Extendable with `extends`, can be merged, better for objects
+- **Type**: More flexible, supports unions, intersections, and primitives
+- Use interface for objects/classes, type for unions and complex types
+
+### Q2: How do you type event handlers in React?
+
+**Answer:**
+
+```tsx
+import { MouseEvent, ChangeEvent } from 'react';
+
+const handleClick = (e: MouseEvent<HTMLButtonElement>) => {};
+const handleChange = (e: ChangeEvent<HTMLInputElement>) => {};
+```
+
+### Q3: What is the difference between `any` and `unknown`?
+
+**Answer:**
+
+- **any**: Disables type checking (avoid!)
+- **unknown**: Type-safe version, must check type before using
+
+```tsx
+let value: unknown = getData();
+if (typeof value === 'string') {
+  console.log(value.toUpperCase()); // Safe!
+}
+```
+
+### Q4: How do you type children in React components?
+
+**Answer:**
+
+```tsx
+import { ReactNode, PropsWithChildren } from 'react';
+
+// Option 1: ReactNode
+interface Props {
+  children: ReactNode;
+}
+
+// Option 2: PropsWithChildren helper
+type Props = PropsWithChildren<{ title: string }>;
+```
+
+### Q5: Explain generic components in React.
+
+**Answer:** Generic components accept type parameters for flexibility:
+
+```tsx
+function List<T>({
+  items,
+  renderItem,
+}: {
+  items: T[];
+  renderItem: (item: T) => ReactNode;
+}) {
+  return <ul>{items.map(renderItem)}</ul>;
+}
+
+// Usage infers type from items
+<List items={users} renderItem={(user) => <li>{user.name}</li>} />;
+```
+
+---
+
+## Practice Exercises
+
+1. Convert a JavaScript React app to TypeScript
+2. Create a generic Table component with typed columns
+3. Build a form with typed form values and validation
+4. Type a Context with multiple values and actions
+5. Create a custom hook with generic return type
+
+---
+
+_Next: [15-advanced-patterns.md](./15-advanced-patterns.md)_

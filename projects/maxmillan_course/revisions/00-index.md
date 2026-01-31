@@ -49,6 +49,12 @@ Welcome to your comprehensive React revision guide! This collection covers all t
 | 15  | **Advanced Patterns**           | Compound Components, HOCs, Render Props, Custom Hooks | [15-advanced-patterns.md](./15-advanced-patterns.md)                 |
 | 16  | **React 18/19 Features**        | Concurrent Rendering, Transitions, Server Components  | [16-react-18-19-features.md](./16-react-18-19-features.md)           |
 
+### Data Fetching & Server State
+
+| #   | Topic              | Description                                                  | File                                           |
+| --- | ------------------ | ------------------------------------------------------------ | ---------------------------------------------- |
+| 18  | **TanStack Query** | useQuery, useMutation, Caching, Optimistic Updates, DevTools | [18-tanstack-query.md](./18-tanstack-query.md) |
+
 ### Prerequisites & Interview Prep
 
 | #   | Topic                       | Description                                               | File                                                             |
@@ -82,6 +88,13 @@ const memoizedValue = useMemo(() => computeValue(), [deps]);
 
 // Context
 const value = useContext(MyContext);
+
+// TanStack Query
+const { data, isLoading, error } = useQuery({
+  queryKey: ['key'],
+  queryFn: fetchFn,
+});
+const mutation = useMutation({ mutationFn: createFn });
 ```
 
 ### Component Patterns
@@ -111,6 +124,7 @@ Complex local state → useReducer
 Shared across few components → Lift state up
 Shared across many components → Context API
 Large app, complex state → Redux Toolkit
+Server state (API data) → TanStack Query
 ```
 
 ---
@@ -144,6 +158,8 @@ Large app, complex state → Redux Toolkit
 14. TypeScript with React
 15. Advanced Patterns
 16. React 18/19 Features
+17. JavaScript Fundamentals (Review as needed)
+18. TanStack Query
 
 ---
 
@@ -166,6 +182,7 @@ These revision guides are based on the following course projects:
 | Sending requests      | HTTP, Custom Hooks, Error Handling       |
 | React Art             | CSS Modules, Styled Components, Tailwind |
 | Behind the Scenes     | memo, useCallback, useMemo               |
+| TanStack Queries      | useQuery, useMutation, Caching           |
 
 ---
 
@@ -184,13 +201,14 @@ These revision guides are based on the following course projects:
 After mastering these concepts, explore:
 
 - **Next.js** - React framework for production (SSR, SSG, API routes)
-- **React Query / TanStack Query** - Data fetching and caching library
 - **Zustand / Jotai** - Lightweight state management alternatives
 - **Framer Motion** - Animation library for React
 - **React Native** - Build mobile apps with React
+- **tRPC** - End-to-end typesafe APIs
+- **Zod** - TypeScript-first schema validation
 
 ---
 
-_Last updated: December 2024_
+_Last updated: February 2026_
 
 _Happy Learning! 🎉_

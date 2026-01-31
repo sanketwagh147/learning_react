@@ -11,6 +11,8 @@
 7. [Optimistic Updates](#optimistic-updates)
 8. [Best Practices](#best-practices)
 
+> **💡 Note:** For production applications with complex data fetching needs (caching, background refetching, optimistic updates), consider using **TanStack Query**. See [18-tanstack-query.md](./18-tanstack-query.md) for details.
+
 ---
 
 ## Fetch API Basics

@@ -876,6 +876,58 @@ function AutoFocusInput() {
 
 ---
 
+## 🎯 Common Interview Questions
+
+### Q1: What is the difference between ref and state?
+
+**Answer:**
+
+- **State**: Changing it triggers re-render; used for data that affects UI
+- **Ref**: Changing `.current` does NOT trigger re-render; used for DOM access or storing mutable values
+
+```jsx
+const [count, setCount] = useState(0); // Changes cause re-render
+const countRef = useRef(0); // Changes don't cause re-render
+```
+
+### Q2: When should you use forwardRef?
+
+**Answer:** Use `forwardRef` when:
+
+- You want to expose DOM element of a custom component to parent
+- Building reusable component libraries
+- Parent needs to call methods on child's DOM (focus, scroll, etc.)
+
+### Q3: What are Portals and when should you use them?
+
+**Answer:** Portals render children outside the parent DOM hierarchy while maintaining React's event bubbling. Use for:
+
+- **Modals** - Need to escape `overflow: hidden`
+- **Tooltips** - Prevent clipping by ancestors
+- **Dropdowns** - Position relative to viewport
+
+### Q4: What errors can't Error Boundaries catch?
+
+**Answer:** Error Boundaries cannot catch:
+
+- Event handlers (use try/catch)
+- Async code (setTimeout, fetch)
+- Server-side rendering errors
+- Errors in the error boundary itself
+
+### Q5: Explain useImperativeHandle.
+
+**Answer:** `useImperativeHandle` customizes what's exposed when a parent uses a ref on your component. It limits access to specific methods instead of the entire DOM element.
+
+```jsx
+useImperativeHandle(ref, () => ({
+  focus: () => inputRef.current.focus(),
+  // Only focus is exposed, not entire DOM
+}));
+```
+
+---
+
 ## Practice Exercises
 
 1. Create a custom `Input` component with focus, blur, and select methods

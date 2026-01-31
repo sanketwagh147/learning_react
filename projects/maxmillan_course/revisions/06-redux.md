@@ -922,6 +922,62 @@ export const asyncAction = () => async (dispatch) => {
 
 ---
 
+## 🎯 Common Interview Questions
+
+### Q1: What is Redux and when should you use it?
+
+**Answer:** Redux is a predictable state container for JavaScript applications. Use it when:
+
+- State is shared across many components
+- State updates are complex with many moving parts
+- You need time-travel debugging
+- Team needs strict, predictable patterns
+
+### Q2: Explain the three principles of Redux.
+
+**Answer:**
+
+1. **Single source of truth** - All state lives in one store object
+2. **State is read-only** - Only actions can trigger state changes
+3. **Changes via pure functions** - Reducers are pure functions that return new state
+
+### Q3: What is the difference between Redux Toolkit and vanilla Redux?
+
+**Answer:**
+
+- **RTK includes Immer** - Write "mutating" code that's actually immutable
+- **createSlice** - Auto-generates action creators and types
+- **configureStore** - Sets up DevTools and middleware automatically
+- **Less boilerplate** - No need for action type constants or switch statements
+
+### Q4: What is a thunk and why is it needed?
+
+**Answer:** A thunk is a function that returns another function. It's needed because:
+
+- Redux actions are plain objects (synchronous)
+- Thunks allow async operations (API calls) before dispatching
+- The inner function receives `dispatch` and `getState` as arguments
+
+```javascript
+// Thunk example
+export const fetchUser = (userId) => async (dispatch, getState) => {
+  dispatch(setLoading(true));
+  const user = await api.getUser(userId);
+  dispatch(setUser(user));
+  dispatch(setLoading(false));
+};
+```
+
+### Q5: Context API vs Redux - when to use which?
+
+**Answer:**
+
+- **Context API**: Simple global state, theme, auth, small apps
+- **Redux**: Complex state, frequent updates, large apps, need DevTools
+- Context can cause unnecessary re-renders; Redux is optimized for performance
+
+---
+
 ## Practice Exercises
 
 1. Convert a Context-based app to Redux

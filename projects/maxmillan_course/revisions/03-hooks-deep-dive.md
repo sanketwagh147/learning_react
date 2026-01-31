@@ -1185,6 +1185,90 @@ function Checkout() {
 
 ---
 
+## Hook Selection Flowchart
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                   Which Hook Should I Use?                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Need to store data that changes?                               │
+│       │                                                         │
+│       ├── Simple value → useState                               │
+│       ├── Complex object with multiple updates → useReducer     │
+│       └── Value that shouldn't trigger re-render → useRef       │
+│                                                                 │
+│  Need to run code after render?                                 │
+│       │                                                         │
+│       ├── Fetch data, subscribe, DOM manipulation → useEffect   │
+│       └── Before paint (measure layout) → useLayoutEffect       │
+│                                                                 │
+│  Need to optimize performance?                                  │
+│       │                                                         │
+│       ├── Expensive calculation → useMemo                       │
+│       └── Callback passed to child → useCallback                │
+│                                                                 │
+│  Need to access context?                                        │
+│       └── useContext                                            │
+│                                                                 │
+│  Need DOM reference?                                            │
+│       └── useRef + ref attribute                                │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Real-World Custom Hook: useAsync
+
+```jsx
+// A production-ready async hook
+function useAsync(asyncFn, dependencies = []) {
+  const [state, setState] = useState({
+    data: null,
+    loading: true,
+    error: null,
+  });
+
+  const execute = useCallback(async () => {
+    setState({ data: null, loading: true, error: null });
+    try {
+      const data = await asyncFn();
+      setState({ data, loading: false, error: null });
+      return data;
+    } catch (error) {
+      setState({ data: null, loading: false, error });
+      throw error;
+    }
+  }, dependencies);
+
+  useEffect(() => {
+    execute();
+  }, [execute]);
+
+  return { ...state, execute };
+}
+
+// Usage
+function UserProfile({ userId }) {
+  const {
+    data: user,
+    loading,
+    error,
+    execute: refetch,
+  } = useAsync(
+    () => fetch(`/api/users/${userId}`).then((r) => r.json()),
+    [userId]
+  );
+
+  if (loading) return <Spinner />;
+  if (error) return <Error message={error.message} onRetry={refetch} />;
+  return <Profile user={user} />;
+}
+```
+
+---
+
 ## Hooks Cheat Sheet
 
 | Hook             | Purpose           | Returns                    |

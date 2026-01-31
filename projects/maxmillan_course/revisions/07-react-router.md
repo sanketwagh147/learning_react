@@ -36,6 +36,14 @@ Traditional Web:                    SPA with React Router:
 └─────────────────┘                └─────────────────┘
 ```
 
+### Router Types Quick Reference
+
+| Router Type           | Use Case                        | URL Example       |
+| --------------------- | ------------------------------- | ----------------- |
+| `createBrowserRouter` | Production web apps             | `/products/123`   |
+| `createHashRouter`    | Static hosts (no server config) | `/#/products/123` |
+| `createMemoryRouter`  | Testing, React Native           | No URL change     |
+
 ---
 
 ## Setting Up React Router
@@ -46,7 +54,7 @@ Traditional Web:                    SPA with React Router:
 npm install react-router-dom
 ```
 
-### Creating Routes (Modern Approach)
+### Creating Routes (Modern Approach - v6.4+)
 
 ```jsx
 // App.jsx
@@ -68,6 +76,25 @@ function App() {
 }
 
 export default App;
+```
+
+### Project Structure Recommendation
+
+```
+src/
+├── pages/             # Route components (page-level)
+│   ├── Home.jsx
+│   ├── Products.jsx
+│   ├── ProductDetail.jsx
+│   └── NotFound.jsx
+├── components/        # Reusable UI components
+│   ├── Header.jsx
+│   └── ProductCard.jsx
+├── layouts/           # Layout components with <Outlet />
+│   └── RootLayout.jsx
+├── router/            # Router configuration
+│   └── index.jsx
+└── App.jsx
 ```
 
 ---

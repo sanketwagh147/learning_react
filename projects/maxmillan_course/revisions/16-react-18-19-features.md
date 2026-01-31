@@ -867,3 +867,71 @@ const [optimistic, addOptimistic] = useOptimistic(state, updateFn);
 const value = use(promise); // In Suspense boundary
 const ctx = use(Context); // Can be conditional!
 ```
+
+---
+
+## 🎯 Common Interview Questions
+
+### Q1: What is Concurrent Rendering in React 18?
+
+**Answer:** Concurrent rendering allows React to work on multiple UI versions simultaneously. React can:
+
+- Pause, resume, or abandon renders
+- Keep UI responsive during expensive updates
+- Prioritize urgent updates (typing) over non-urgent (search results)
+
+### Q2: Explain useTransition and when to use it.
+
+**Answer:** `useTransition` marks state updates as non-urgent:
+
+```jsx
+const [isPending, startTransition] = useTransition();
+startTransition(() => setSearchResults(data));
+```
+
+Use for expensive renders that shouldn't block user input.
+
+### Q3: What is Automatic Batching?
+
+**Answer:** React 18 automatically groups multiple state updates into one re-render, even in:
+
+- Promises (`.then()`)
+- setTimeout/setInterval
+- Native event handlers
+
+Before React 18, only React event handlers were batched.
+
+### Q4: What is useDeferredValue?
+
+**Answer:** `useDeferredValue` returns a "stale" version of a value that can lag behind:
+
+```jsx
+const deferredQuery = useDeferredValue(query);
+// UI stays responsive while expensive search updates
+```
+
+Use when you can't wrap the update in `startTransition`.
+
+### Q5: What's new in React 19?
+
+**Answer:** Key React 19 features:
+
+- **useActionState**: Handle form submissions with pending state
+- **useOptimistic**: Optimistic UI updates
+- **use()**: Read promises and context in render
+- **Server Components**: Components that run on the server
+- **Enhanced ref handling**: ref as a prop (no forwardRef needed)
+
+---
+
+## Practice Exercises
+
+1. Add useTransition to a search filter component
+2. Implement useDeferredValue for a large list
+3. Create accessible forms using useId
+4. Build a data table with Suspense for loading states
+5. Experiment with React 19's useOptimistic for a todo app
+
+---
+
+_Next: [17-javascript-fundamentals.md](./17-javascript-fundamentals.md)_

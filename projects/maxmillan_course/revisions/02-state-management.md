@@ -719,6 +719,83 @@ const [formState, dispatch] = useReducer(formReducer, {
 
 ---
 
+## State Flow Visualization
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    React State Update Flow                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   User Action (click, type)                                     │
+│         │                                                       │
+│         ▼                                                       │
+│   Event Handler called                                          │
+│         │                                                       │
+│         ▼                                                       │
+│   setState() / dispatch() called                                │
+│         │                                                       │
+│         ▼                                                       │
+│   React schedules re-render (async/batched)                     │
+│         │                                                       │
+│         ▼                                                       │
+│   Component function runs again                                 │
+│         │                                                       │
+│         ▼                                                       │
+│   New JSX returned with updated state                           │
+│         │                                                       │
+│         ▼                                                       │
+│   Virtual DOM diffed → Real DOM updated                         │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Common Debugging Scenarios
+
+### State Not Updating?
+
+```jsx
+// ❌ Problem 1: Mutating state directly
+const [user, setUser] = useState({ name: 'John' });
+user.name = 'Jane'; // Mutation - won't trigger re-render!
+setUser(user); // Same reference
+
+// ✅ Solution: Create new object
+setUser({ ...user, name: 'Jane' });
+
+// ❌ Problem 2: Stale closure
+const [count, setCount] = useState(0);
+setTimeout(() => {
+  console.log(count); // Always shows old value!
+}, 3000);
+
+// ✅ Solution: Use ref or functional update
+const countRef = useRef(count);
+countRef.current = count;
+setTimeout(() => {
+  console.log(countRef.current); // Shows current value
+}, 3000);
+```
+
+### State Updating Too Many Times?
+
+```jsx
+// ❌ Problem: Infinite loop
+useEffect(() => {
+  setData(processData(data)); // Updates data, triggers effect again!
+}, [data]);
+
+// ✅ Solution: Add condition or remove from deps
+useEffect(() => {
+  if (!data.processed) {
+    setData({ ...data, processed: true });
+  }
+}, [data]);
+```
+
+---
+
 ## State Management Patterns Cheat Sheet
 
 ```jsx

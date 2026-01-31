@@ -945,3 +945,61 @@ const LazyComponent = lazy(() => import('./Component'));
   </Suspense>
 </ErrorBoundary>
 ```
+
+---
+
+## 🎯 Common Interview Questions
+
+### Q1: Why must Error Boundaries be class components?
+
+**Answer:** Error Boundaries require lifecycle methods (`getDerivedStateFromError` and `componentDidCatch`) that don't have hook equivalents. React team hasn't added hook-based error boundaries yet.
+
+### Q2: What's the difference between getDerivedStateFromError and componentDidCatch?
+
+**Answer:**
+
+- **getDerivedStateFromError**: Called during render phase, must return state update, used for rendering fallback UI
+- **componentDidCatch**: Called during commit phase, used for side effects like logging errors
+
+### Q3: What is Suspense and how does it work?
+
+**Answer:** Suspense lets components "wait" for something before rendering. When a component throws a Promise, Suspense catches it and shows a fallback until resolved. Used for:
+
+- Lazy loading components with `React.lazy()`
+- Data fetching (with compatible libraries)
+
+### Q4: How do you handle errors in event handlers?
+
+**Answer:** Error Boundaries don't catch event handler errors. Use try/catch:
+
+```jsx
+const handleClick = async () => {
+  try {
+    await riskyOperation();
+  } catch (error) {
+    setError(error.message);
+  }
+};
+```
+
+### Q5: What is a Suspense waterfall and how do you avoid it?
+
+**Answer:** A waterfall occurs when nested Suspense boundaries load sequentially. Avoid by:
+
+- Using sibling Suspense boundaries (parallel loading)
+- Prefetching data before navigation
+- Using libraries like TanStack Query with parallel queries
+
+---
+
+## Practice Exercises
+
+1. Create an ErrorBoundary with retry functionality
+2. Build a lazy-loaded route system with Suspense
+3. Create skeleton loading states for different content types
+4. Implement a global error boundary with error reporting
+5. Build a dashboard with parallel Suspense boundaries
+
+---
+
+_Next: [13-testing.md](./13-testing.md)_
